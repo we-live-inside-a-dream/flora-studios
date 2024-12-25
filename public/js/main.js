@@ -31,4 +31,96 @@ document.addEventListener('DOMContentLoaded', function() {
     //         navLinks.classList.remove('active');
     //     });
     // });
+
+    // Portfolio items functionality
+    const projectContainer = document.getElementById('project-container');
+    if (projectContainer) {
+        // Only run this if we're on the page that has #project-container
+        fetch('../projects.json')
+        .then(response => response.json())
+        .then(projects => {
+            projects.forEach(project => {
+                const projectItem = document.createElement('div');
+                projectItem.className = 'flex-item';
+
+                const img = document.createElement('img');
+                img.src = project.image;
+                console.log('Image:', img);
+                img.alt = project.title;
+                img.className = 'project-image';
+                
+
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+
+            const itemTitle = document.createElement('span');
+            itemTitle.className = 'item-title';
+            itemTitle.textContent = project.title;
+
+            projectItem.appendChild(img);
+            projectItem.appendChild(overlay);
+            projectItem.appendChild(itemTitle);
+            projectContainer.appendChild(projectItem);
+
+            // Click event to navigate to portfolio-landing.html
+            projectItem.addEventListener('click', () => {
+                window.location.href = `portfolio-landing.html?title=${encodeURIComponent(project.title)}&image=${encodeURIComponent(project.image)}&link=${encodeURIComponent(project.link)}`;
+            });
+            });
+        })
+        .catch(error => console.error('Error loading projects:', error));
+    }
+
+    // Portfolio landing page functionality
+    const projectHero = document.getElementById('project-hero');
+    if (projectHero) {
+        // Only run this if we're on the page that has #project-hero
+        const urlParams = new URLSearchParams(window.location.search);
+        const title = urlParams.get('title');
+        console.log('Title:', title);
+        const image = urlParams.get('image');
+        const link = urlParams.get('link');
+
+        // Display basic info
+        const projectTitleEl = document.getElementById('project-title');
+        const projectDetailsEl = document.getElementById('project-details');
+        const projectGalleryEl = document.getElementById('project-gallery');
+
+        if (projectTitleEl) {
+        projectTitleEl.textContent = title || 'Untitled Project';
+        }
+        if (projectHero && image) {
+            const img = document.createElement('img');
+            img.src = image;
+            img.alt = title;
+            img.className = 'hero-image';
+            projectHero.appendChild(img);
+        }
+        if (projectDetailsEl) {
+        projectDetailsEl.textContent = `Detailed information about ${title}...`;
+        }
+
+        if (projectGalleryEl) {
+            fetch('../projects.json')
+            .then(response => response.json())
+            .then(projects => {
+                projects.forEach(project => {
+                    if (project.title === title) {
+                        if (projectDetailsEl) {
+                            projectDetailsEl.textContent = project.desc || `Detailed information about ${title}...`;
+                        }
+                        if (projectGalleryEl) {
+                            project.gallery.forEach(galleryItem => {
+                                const img = document.createElement('img');
+                                img.src = galleryItem.image;
+                                img.className = 'gallery-image';
+                                projectGalleryEl.appendChild(img);
+                            });
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading project images:', error));
+        }
+    }
 }); 
