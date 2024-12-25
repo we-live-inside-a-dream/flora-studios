@@ -758,6 +758,13 @@ footer {
         }
       }
     }
+
+    @media screen and (max-width: 768px) {
+        .flex-item {
+            flex: 1 1 calc(50% - #{$gap-size});
+            padding-bottom: 50%;
+        }
+    }
   }
 
   //Portfolio Landing Page Styles
