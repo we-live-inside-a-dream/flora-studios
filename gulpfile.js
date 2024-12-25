@@ -12,7 +12,7 @@ const paths = {
         dest: 'public/css'
     },
     html: {
-        src: 'public/**/*.html'
+        src: 'public/pages/**/*.html'
     }
 };
 
@@ -30,7 +30,8 @@ function styles() {
 function watch() {
     browserSync.init({
         server: {
-            baseDir: './public'
+            baseDir: './public',
+            index: '/pages/index.html'
         }
     });
     gulp.watch(paths.styles.src, styles);
