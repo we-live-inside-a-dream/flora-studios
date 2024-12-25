@@ -1,16 +1,15 @@
 // Variables
 $primary-color: #2c3e50;
 $secondary-color: #e74c3c;
-$text-color: #333;
+$text-color: #000000;
 $light-gray: #f5f5f5;
 $white: #fff;
 $transition: all 0.3s ease;
-
-// Variables for Portfolio Page
 $gap-size: 1rem;
-$transition-duration: 0.3s;
-$hover-overlay-color: #fff;         // White overlay
+$hover-overlay-color: rgba(255, 255, 255, 0.9);
 $hover-overlay-opacity: 0.8;
+$transition-duration: 0.3s;
+$title-font-size: 2rem;
 
 // Mixins
 @mixin flex-center {
@@ -673,8 +672,8 @@ footer {
 
 
 // Portfolio page
-.project-highland {
-    padding: 2rem;
+.project-container {
+    padding: 6rem 2rem 2rem 2rem;
   
     .flex-container {
       display: flex;
@@ -684,43 +683,57 @@ footer {
     }
   
     .flex-item {
-      // This ensures three boxes per row
-      flex: 0 0 33.3333%;
-      // Use box-sizing and padding to control spacing
-      box-sizing: border-box;
-      padding: $gap-size / 2;
-  
-      // Make each item a square using the pseudo-element trick
-      position: relative;
-      &:before {
-        content: "";
-        display: block;
-        padding-bottom: 100%; // forces a square aspect ratio
-      }
-  
-      background-size: cover;
-      background-position: center;
-      transition: filter $transition-duration ease-in-out;
-  
-      // White overlay pseudo-element
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: $hover-overlay-color;
-        opacity: 0;
-        transition: opacity $transition-duration ease-in-out;
-      }
+        position: relative;
+        flex: 1 1 calc(33.333% - #{$gap-size});
+        height: 0;
+        padding-bottom: 33.333%; // Maintain square aspect ratio
+        background-size: cover;
+        background-position: center;
+        transition: $transition-duration ease-in-out;
+
+        .overlay {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: $hover-overlay-color; // Updated to more opaque white
+            opacity: 0;
+            transition: opacity $transition-duration ease-in-out;
+        }
+
+        .item-title {
+            @include flex-center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba($white, 0.9);
+            opacity: 0;
+            transition: opacity $transition-duration ease-in-out;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: $text-color;
+            font-size: $title-font-size;
+        }
+    
   
       // Hover effect
       &:hover {
-        filter: brightness(80%);
+        filter: brightness(90%);
+
+        overlay {
+            opacity: $hover-overlay-opacity;
+        }
   
         &::after {
           opacity: $hover-overlay-opacity;
+        }
+
+        .item-title {
+            opacity: 1;
         }
       }
     }
