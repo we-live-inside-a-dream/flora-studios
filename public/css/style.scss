@@ -10,6 +10,7 @@ $hover-overlay-color: rgba(255, 255, 255, 0.9);
 $hover-overlay-opacity: 0.8;
 $transition-duration: 0.3s;
 $title-font-size: 2rem;
+$root-font-family: 'Century Gothic', sans-serif;
 
 // Mixins
 @mixin flex-center {
@@ -23,12 +24,19 @@ $title-font-size: 2rem;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: none;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: $root-font-family;
     line-height: 1.6;
     color: $text-color;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
 }
 
 // Navigation
@@ -714,7 +722,7 @@ footer {
             opacity: 0;
             transition: opacity $transition-duration ease-in-out;
             font-size: 1.2rem;
-            font-weight: bold;
+            // font-weight: bold;
             color: $text-color;
             font-size: $title-font-size;
         }
