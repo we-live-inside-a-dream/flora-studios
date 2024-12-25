@@ -1,9 +1,33 @@
 {
-    "public": "public",
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/$1"
-      }
-    ]
-  }
+  "public": "public",
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/pages/index.html"
+    },
+    {
+      "src": "/about",
+      "dest": "/pages/about.html"
+    },
+    {
+      "src": "/services",
+      "dest": "/pages/services.html"
+    },
+    {
+      "src": "/portfolio",
+      "dest": "/pages/portfolio.html"
+    },
+    {
+      "src": "/portfolio-landing",
+      "dest": "/pages/portfolio-landing.html"
+    },
+    {
+      "src": "/contact",
+      "dest": "/pages/contact.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/pages/$1"
+    }
+  ]
+}
