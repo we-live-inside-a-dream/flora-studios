@@ -24,7 +24,6 @@ $root-font-family: 'Josefin Sans', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 14px;
     font-style: normal;
     font-weight: 300;
     text-transform: none;
@@ -118,7 +117,7 @@ header {
         // Media query for hamburgur menue on mobile devices
         @media screen and (max-width: 768px) {
             .hamburger {
-                display: flex; // Show hamburger on mobile
+                display: flex;
             }
 
             .nav-links {
@@ -417,6 +416,11 @@ footer {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                h3 {
+                    font-size: 2rem;
+                    margin: 1em 0;
+                    text-align: center;
+                }
             }
         }
     }
@@ -471,18 +475,18 @@ footer {
     }
 
     .service-process {
-        padding: 4rem 1rem;
+        padding: 3rem 1rem;
 
         
 
         .mobile-only {
             h2 {
-                margin-bottom: 0;
+                margin-bottom: 2.5rem;
             }
             display: block;
         }
 
-        .container {
+        .services-container {
             h2 {
                 display: none;
             }
@@ -650,9 +654,9 @@ footer {
 }
 
 // About us Page
-.about-hero {
-    background: url('../assets/photo_2024-12-24 12.15.19.jpeg') no-repeat center center/cover;
-    height: 60vh;
+.about-hero img {
+    width: 100%;
+    height: 50vh;
     color: #fff;
     text-align: center;
 }
@@ -707,6 +711,7 @@ footer {
         overflow: hidden;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
 
         img {
             position: absolute;
