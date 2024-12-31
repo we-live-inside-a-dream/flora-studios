@@ -123,4 +123,88 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error loading project images:', error));
         }
     }
+
+    // portfolio image modal
+    const modal = document.getElementById('image-modal');
+    const closeBtn = document.querySelector('.image-modal .close');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    let currentIndex = 0;
+    let images = [];
+    
+    // Function to open the modal
+    function openModal(index) {
+        if (images.length > 0 && index >= 0 && index < images.length) {
+            modal.style.display = 'block';
+            modalImg.src = images[index].src;
+            currentIndex = index;
+        }
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Function to show the previous image
+    function showPrevImage() {
+        if (images.length > 0) {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            modalImg.src = images[currentIndex].src;
+        }
+    }
+
+    // Function to show the next image
+    function showNextImage() {
+        if (images.length > 0) {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            modalImg.src = images[currentIndex].src;
+        }
+    }
+
+    // Add event listeners to dynamically created images
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('gallery-image')) {
+            images = document.querySelectorAll('.gallery-image');
+            const index = Array.from(images).indexOf(event.target);
+            openModal(index);
+        }
+    });
+
+    // Add event listeners to modal controls
+    closeBtn.addEventListener('click', closeModal);
+    prevBtn.addEventListener('click', showPrevImage);
+    nextBtn.addEventListener('click', showNextImage);
+
+    // Close modal when clicking outside of the image
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Load project images
+    function loadProjectImages() {
+        const projectGalleryEl = document.getElementById('project-gallery');
+        if (projectGalleryEl) {
+            fetch('path/to/your/project/data.json')
+                .then(response => response.json())
+                .then(data => {
+                    data.projects.forEach(project => {
+                        if (projectGalleryEl) {
+                            project.gallery.forEach(galleryItem => {
+                                const img = document.createElement('img');
+                                img.src = galleryItem.image;
+                                img.className = 'gallery-image';
+                                projectGalleryEl.appendChild(img);
+                            });
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading project images:', error));
+        }
+    }
+
+    // Call the function to load project images
+    loadProjectImages();
 }); 
