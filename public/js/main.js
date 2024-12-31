@@ -125,13 +125,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // portfolio image modal
+    function loadProjectImages() {
+        const projectGalleryEl = document.getElementById('project-gallery');
+        if (projectGalleryEl) {
+            fetch('path/to/your/project/data.json')
+                .then(response => response.json())
+                .then(data => {
+                    data.projects.forEach(project => {
+                        if (projectGalleryEl) {
+                            project.gallery.forEach(galleryItem => {
+                                const img = document.createElement('img');
+                                img.src = galleryItem.image;
+                                img.className = 'gallery-image';
+                                projectGalleryEl.appendChild(img);
+                            });
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading project images:', error));
+        }
+    }
+    
+    // Call the function to load project images
+    loadProjectImages();
+
+    // Portfolio image modal
     const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-image'); // Define modalImg here
     const closeBtn = document.querySelector('.image-modal .close');
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');
     let currentIndex = 0;
     let images = [];
-    
+
     // Function to open the modal
     function openModal(index) {
         if (images.length > 0 && index >= 0 && index < images.length) {
@@ -182,29 +208,4 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }
     });
-
-    // Load project images
-    function loadProjectImages() {
-        const projectGalleryEl = document.getElementById('project-gallery');
-        if (projectGalleryEl) {
-            fetch('path/to/your/project/data.json')
-                .then(response => response.json())
-                .then(data => {
-                    data.projects.forEach(project => {
-                        if (projectGalleryEl) {
-                            project.gallery.forEach(galleryItem => {
-                                const img = document.createElement('img');
-                                img.src = galleryItem.image;
-                                img.className = 'gallery-image';
-                                projectGalleryEl.appendChild(img);
-                            });
-                        }
-                    });
-                })
-                .catch(error => console.error('Error loading project images:', error));
-        }
-    }
-
-    // Call the function to load project images
-    loadProjectImages();
 }); 
