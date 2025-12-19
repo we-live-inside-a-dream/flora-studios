@@ -1,33 +1,32 @@
 {
-  "public": "public",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/pages/index.html"
+      "source": "/",
+      "destination": "/pages/index.html"
     },
     {
-      "src": "/about",
-      "dest": "/pages/about.html"
+      "source": "/about",
+      "destination": "/pages/about.html"
     },
     {
-      "src": "/services",
-      "dest": "/pages/services.html"
+      "source": "/services",
+      "destination": "/pages/services.html"
     },
     {
-      "src": "/portfolio",
-      "dest": "/pages/portfolio.html"
+      "source": "/portfolio",
+      "destination": "/pages/portfolio.html"
     },
     {
-      "src": "/portfolio-landing",
-      "dest": "/pages/portfolio-landing.html"
+      "source": "/portfolio-landing",
+      "destination": "/pages/portfolio-landing.html"
     },
     {
-      "src": "/contact",
-      "dest": "/pages/contact.html"
+      "source": "/contact",
+      "destination": "/pages/contact.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/pages/$1"
+      "source": "/(.*)",
+      "destination": "/pages/$1"
     }
   ]
 }
