@@ -32,6 +32,22 @@ function watch() {
         server: {
             baseDir: './public',
             index: '/pages/index.html'
+        },
+        middleware: function (req, res, next) {
+            // Handle URL rewrites to match Vercel configuration
+            const rewrites = {
+                '/': '/pages/index.html',
+                '/about': '/pages/about.html',
+                '/services': '/pages/services.html',
+                '/portfolio': '/pages/portfolio.html',
+                '/portfolio-landing': '/pages/portfolio-landing.html',
+                '/contact': '/pages/contact.html'
+            };
+
+            if (rewrites[req.url]) {
+                req.url = rewrites[req.url];
+            }
+            next();
         }
     });
     gulp.watch(paths.styles.src, styles);
