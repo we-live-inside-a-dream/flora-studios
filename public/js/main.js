@@ -1,14 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const items = document.querySelectorAll('.carousel-item');
     let currentItem = 0;
-    
+
     function nextSlide() {
         // Remove active class from current item
         items[currentItem].classList.remove('active');
-        
+
         // Move to next item
         currentItem = (currentItem + 1) % items.length;
-        
+
         // Add active class to new current item
         items[currentItem].classList.add('active');
     }
@@ -37,38 +37,38 @@ document.addEventListener('DOMContentLoaded', function() {
     if (projectContainer) {
         // Only run this if we're on the page that has #project-container
         fetch('../projects.json')
-        .then(response => response.json())
-        .then(projects => {
-            projects.forEach(project => {
-                const projectItem = document.createElement('div');
-                projectItem.className = 'flex-item';
+            .then(response => response.json())
+            .then(projects => {
+                projects.forEach(project => {
+                    const projectItem = document.createElement('div');
+                    projectItem.className = 'flex-item';
 
-                const img = document.createElement('img');
-                img.src = project.image;
-                console.log('Image:', img);
-                img.alt = project.title;
-                img.className = 'project-image';
-                
+                    const img = document.createElement('img');
+                    img.src = project.image;
+                    console.log('Image:', img);
+                    img.alt = project.title;
+                    img.className = 'project-image';
 
-            const overlay = document.createElement('div');
-            overlay.className = 'overlay';
 
-            const itemTitle = document.createElement('span');
-            itemTitle.className = 'item-title';
-            itemTitle.textContent = project.title;
+                    const overlay = document.createElement('div');
+                    overlay.className = 'overlay';
 
-            projectItem.appendChild(img);
-            projectItem.appendChild(overlay);
-            projectItem.appendChild(itemTitle);
-            projectContainer.appendChild(projectItem);
+                    const itemTitle = document.createElement('span');
+                    itemTitle.className = 'item-title';
+                    itemTitle.textContent = project.title;
 
-            // Click event to navigate to portfolio-landing.html
-            projectItem.addEventListener('click', () => {
-                window.location.href = `portfolio-landing.html?title=${encodeURIComponent(project.title)}&image=${encodeURIComponent(project.image)}&link=${encodeURIComponent(project.link)}`;
-            });
-            });
-        })
-        .catch(error => console.error('Error loading projects:', error));
+                    projectItem.appendChild(img);
+                    projectItem.appendChild(overlay);
+                    projectItem.appendChild(itemTitle);
+                    projectContainer.appendChild(projectItem);
+
+                    // Click event to navigate to portfolio-landing.html
+                    projectItem.addEventListener('click', () => {
+                        window.location.href = `portfolio-landing.html?title=${encodeURIComponent(project.title)}&image=${encodeURIComponent(project.image)}&link=${encodeURIComponent(project.link)}`;
+                    });
+                });
+            })
+            .catch(error => console.error('Error loading projects:', error));
     }
 
     // Portfolio landing page functionality
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const projectGalleryEl = document.getElementById('project-gallery');
 
         if (projectTitleEl) {
-        projectTitleEl.textContent = title || 'Untitled Project';
+            projectTitleEl.textContent = title || 'Untitled Project';
         }
         if (projectHero && image) {
             const img = document.createElement('img');
@@ -97,30 +97,30 @@ document.addEventListener('DOMContentLoaded', function() {
             projectHero.appendChild(img);
         }
         if (projectDetailsEl) {
-        projectDetailsEl.textContent = `Detailed information about ${title}...`;
+            projectDetailsEl.textContent = `Detailed information about ${title}...`;
         }
 
         if (projectGalleryEl) {
             fetch('../projects.json')
-            .then(response => response.json())
-            .then(projects => {
-                projects.forEach(project => {
-                    if (project.title === title) {
-                        if (projectDetailsEl) {
-                            projectDetailsEl.textContent = project.desc || `Detailed information about ${title}...`;
+                .then(response => response.json())
+                .then(projects => {
+                    projects.forEach(project => {
+                        if (project.title === title) {
+                            if (projectDetailsEl) {
+                                projectDetailsEl.textContent = project.desc || `Detailed information about ${title}...`;
+                            }
+                            if (projectGalleryEl) {
+                                project.gallery.forEach(galleryItem => {
+                                    const img = document.createElement('img');
+                                    img.src = galleryItem.image;
+                                    img.className = 'gallery-image';
+                                    projectGalleryEl.appendChild(img);
+                                });
+                            }
                         }
-                        if (projectGalleryEl) {
-                            project.gallery.forEach(galleryItem => {
-                                const img = document.createElement('img');
-                                img.src = galleryItem.image;
-                                img.className = 'gallery-image';
-                                projectGalleryEl.appendChild(img);
-                            });
-                        }
-                    }
-                });
-            })
-            .catch(error => console.error('Error loading project images:', error));
+                    });
+                })
+                .catch(error => console.error('Error loading project images:', error));
         }
     }
 
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => console.error('Error loading project images:', error));
         }
     }
-    
+
     // Call the function to load project images
     loadProjectImages();
 
@@ -208,4 +208,52 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }
     });
+
+    // Contact Form Handling
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            formStatus.textContent = '';
+            formStatus.className = '';
+
+            const formData = new FormData(contactForm);
+
+            fetch('https://formsubmit.co/ajax/rezanaeimabadi7@gmail.com', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success === "true" || data.success === true) {
+                        formStatus.textContent = "Thank you! Your message has been sent successfully.";
+                        formStatus.className = "success-message";
+                        formStatus.style.color = "green";
+                        formStatus.style.marginTop = "10px";
+                        contactForm.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    formStatus.textContent = "Oops! Something went wrong. Please try again later.";
+                    formStatus.className = "error-message";
+                    formStatus.style.color = "red";
+                    formStatus.style.marginTop = "10px";
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send';
+                });
+        });
+    }
+
 }); 
