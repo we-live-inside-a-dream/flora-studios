@@ -44,8 +44,9 @@ function watch() {
                 '/contact': '/pages/contact.html'
             };
 
-            if (rewrites[req.url]) {
-                req.url = rewrites[req.url];
+            const [path, query] = req.url.split('?');
+            if (rewrites[path]) {
+                req.url = rewrites[path] + (query ? '?' + query : '');
             }
             next();
         }
@@ -63,3 +64,4 @@ exports.styles = styles;
 exports.watch = watch;
 exports.build = build;
 exports.default = dev;
+// Force reload

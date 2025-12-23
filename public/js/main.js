@@ -18,6 +18,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
+    const header = document.querySelector('header');
+
+    // Header Scroll Effect
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 
     // Oppening hamburgur menue
     hamburger.addEventListener('click', () => {
@@ -45,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     const img = document.createElement('img');
                     img.src = project.image;
-                    console.log('Image:', img);
+
                     img.alt = project.title;
                     img.className = 'project-image';
 
@@ -64,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Click event to navigate to portfolio-landing.html
                     projectItem.addEventListener('click', () => {
-                        window.location.href = `portfolio-landing.html?title=${encodeURIComponent(project.title)}&image=${encodeURIComponent(project.image)}&link=${encodeURIComponent(project.link)}`;
+                        window.location.href = `/portfolio-landing?title=${encodeURIComponent(project.title)}&image=${encodeURIComponent(project.image)}&link=${encodeURIComponent(project.link)}`;
                     });
                 });
             })
@@ -77,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Only run this if we're on the page that has #project-hero
         const urlParams = new URLSearchParams(window.location.search);
         const title = urlParams.get('title');
-        console.log('Title:', title);
+
         const image = urlParams.get('image');
         const link = urlParams.get('link');
 
