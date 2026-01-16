@@ -38,35 +38,67 @@ To compile the styles for production without starting the server:
 npm run build
 ```
 
-## Vercel Speed Insights
+## Getting Started with Vercel Speed Insights
 
-This project includes Vercel Speed Insights for performance monitoring. Speed Insights tracks Core Web Vitals and other performance metrics for your application.
+This guide will help you get started with using Vercel Speed Insights on your project, showing you how to enable it, add the package to your project, deploy your app to Vercel, and view your data in the dashboard.
+
+### Prerequisites
+
+- A Vercel account. If you don't have one, you can [sign up for free](https://vercel.com/signup).
+- A Vercel project. If you don't have one, you can [create a new project](https://vercel.com/new).
+- The Vercel CLI installed. If you don't have it, you can install it using the following command:
+
+```bash
+npm i vercel
+```
+
+Or using your preferred package manager:
+
+```bash
+# pnpm
+pnpm i vercel
+
+# yarn
+yarn i vercel
+
+# bun
+bun i vercel
+```
 
 ### Setup Instructions
 
 #### 1. Enable Speed Insights in Vercel
 
-On the [Vercel dashboard](/dashboard), select your Project followed by the **Speed Insights** tab. Select **Enable** from the dialog.
+On the [Vercel dashboard](https://vercel.com/dashboard), select your Project followed by the **Speed Insights** tab. You can also select the button below to be taken there. Then, select **Enable** from the dialog.
 
 > **💡 Note:** Enabling Speed Insights will add new routes (scoped at `/_vercel/speed-insights/*`) after your next deployment.
 
-#### 2. Deploy to Vercel
+#### 2. Add `@vercel/speed-insights` to your project
 
-Deploy your app to Vercel's global CDN:
+The `@vercel/speed-insights` package has already been added to this project. If you need to add it to another project, use your package manager of choice:
 
 ```bash
-vercel deploy
+npm i @vercel/speed-insights
 ```
 
-Alternatively, [connect your project's git repository](/docs/git#deploying-a-git-repository), which will enable Vercel to deploy your latest pushes and merges to main.
+Or using your preferred package manager:
 
-#### 3. View Your Data
+```bash
+# pnpm
+pnpm i @vercel/speed-insights
 
-Once your app is deployed and users have visited your site, you can view the data in the [Vercel dashboard](/dashboard) by selecting your project and clicking the **Speed Insights** tab.
+# yarn
+yarn i @vercel/speed-insights
 
-### Implementation Details
+# bun
+bun i @vercel/speed-insights
+```
 
-Speed Insights has been integrated into all pages of the site using the HTML script tag implementation:
+#### 3. Implementation Details
+
+Speed Insights has been integrated into all pages of the site using the HTML script tag implementation. This is the recommended approach for static HTML sites.
+
+The following scripts have been added to all HTML pages (before the closing `</body>` tag):
 
 ```html
 <script>
@@ -75,13 +107,40 @@ Speed Insights has been integrated into all pages of the site using the HTML scr
 <script defer src="/_vercel/speed-insights/script.js"></script>
 ```
 
-This script is automatically loaded on all pages and requires no additional configuration.
+The scripts are automatically loaded on all pages and require no additional configuration.
+
+#### 4. Deploy your app to Vercel
+
+Deploy your app to Vercel's global CDN by running the following command from your terminal:
+
+```bash
+vercel deploy
+```
+
+Alternatively, you can [connect your project's git repository](https://vercel.com/docs/git#deploying-a-git-repository), which will enable Vercel to deploy your latest pushes and merges to main.
+
+Once your app is deployed, it's ready to begin tracking performance metrics.
+
+> **💡 Note:** If everything is set up correctly, you should be able to find the `/_vercel/speed-insights/script.js` script inside the body tag of your page.
+
+#### 5. View your data in the Dashboard
+
+Once your app is deployed, and users have visited your site, you can view the data in the dashboard.
+
+To do so, go to your [Vercel dashboard](https://vercel.com/dashboard), select your project, and click the **Speed Insights** tab.
+
+After a few days of visitors, you'll be able to start exploring your metrics. For more information on how to use Speed Insights, see [Using Speed Insights](https://vercel.com/docs/speed-insights/using-speed-insights).
 
 ### Learn More
 
-- [Vercel Speed Insights Documentation](https://vercel.com/docs/speed-insights)
-- [Understanding Metrics](https://vercel.com/docs/speed-insights/metrics)
-- [Privacy and Compliance](https://vercel.com/docs/speed-insights/privacy-policy)
+Explore the following resources to learn more about Vercel Speed Insights:
+
+- [Learn how to use the `@vercel/speed-insights` package](https://vercel.com/docs/speed-insights/package)
+- [Learn about metrics](https://vercel.com/docs/speed-insights/metrics)
+- [Read about privacy and compliance](https://vercel.com/docs/speed-insights/privacy-policy)
+- [Explore pricing](https://vercel.com/docs/speed-insights/limits-and-pricing)
+- [Troubleshooting](https://vercel.com/docs/speed-insights/troubleshooting)
+- [Privacy and Data Compliance Standards](https://vercel.com/docs/speed-insights/privacy-policy)
 
 ## Project Structure
 
