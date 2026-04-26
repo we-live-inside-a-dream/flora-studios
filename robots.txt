@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /node_modules/
+Disallow: /gulpfile.js
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /vercel.json
+Sitemap: /sitemap.xml

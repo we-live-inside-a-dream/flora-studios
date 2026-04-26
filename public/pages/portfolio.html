@@ -4,13 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architecture Portfolio</title>
+    <title>Portfolio | Flora Naeim - Toronto Interior Designer Projects</title>
+    <meta name="description" content="Explore Flora Naeim's portfolio of stunning interior design projects in Toronto. Browse residential and commercial design work by Toronto's premier interior designer.">
+    <meta name="keywords" content="Flora Naeim, Toronto interior designer, Toronto designer, interior design portfolio Toronto, Flora Studio projects, Toronto interior design work">
+    <link rel="canonical" href="https://www.florastudio.com/portfolio">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+    <!-- Local Business Schema (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "InteriorDesign",
+        "name": "Flora Naeim - Flora Studio",
+        "image": "https://www.florastudio.com/assets/photo_2024-12-24%2012.14.06.jpeg",
+        "description": "Flora Naeim is a Toronto interior designer specializing in residential and commercial interior design, creating stunning and functional spaces.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Design Street",
+            "addressLocality": "Toronto",
+            "addressRegion": "ON",
+            "postalCode": "M5V 2T6",
+            "addressCountry": "CA"
+        },
+        "areaServed": {
+            "@type": "City",
+            "name": "Toronto, Ontario"
+        },
+        "jobTitle": "Interior Designer",
+        "url": "https://www.florastudio.com",
+        "telephone": "+1-416-555-0123",
+        "email": "contact@florastudio.com",
+        "priceRange": "$$$",
+        "openingHours": "Mo-Fr 09:00-18:00"
+    }
+    </script>
 </head>
 
 <body>
@@ -32,12 +64,17 @@
         </nav>
     </header>
 
-    <!-- <main> -->
+    <section class="portfolio-header">
+        <div class="hero-content">
+            <h1>Interior Design Portfolio - Flora Naeim Toronto</h1>
+            <p>Explore our collection of interior design projects across Toronto</p>
+        </div>
+    </section>
+
     <section class="portfolio">
         <div class="project-container" id="project-container">
         </div>
     </section>
-    <!-- </main> -->
 
     <footer>
         <div class="container">
@@ -49,6 +86,12 @@
                     <a href="https://www.linkedin.com/in/flora-naeim-79670521a/" target="_blank"><i
                             class="fab fa-linkedin"></i></a>
                 </div>
+            </div>
+            <div class="nap-info">
+                <p><strong>Flora Naeim - Flora Studio</strong></p>
+                <p>123 Design Street, Toronto, ON M5V 2T6</p>
+                <p>Phone: <a href="tel:+14165550123">+1 (416) 555-0123</a></p>
+                <p>Email: <a href="mailto:contact@florastudio.com">contact@florastudio.com</a></p>
             </div>
             <div class="made-in">
                 <p>Made in Canada with <i class="fas fa-heart"></i> by <a href="https://www.rezanaeim.com"

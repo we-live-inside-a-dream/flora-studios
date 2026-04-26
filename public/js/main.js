@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const img = document.createElement('img');
                     img.src = project.image;
 
-                    img.alt = project.title;
+                    img.alt = project.title ? `${project.title} - Interior Design Project in Toronto by Flora Naeim` : 'Interior Design Project in Toronto by Flora Naeim';
                     img.className = 'project-image';
 
 
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (projectHero && image) {
             const img = document.createElement('img');
             img.src = image;
-            img.alt = title;
+            img.alt = title ? `${title} - Interior Design Project in Toronto by Flora Naeim` : 'Interior Design Project in Toronto by Flora Naeim';
             img.className = 'hero-image';
             projectHero.appendChild(img);
         }
