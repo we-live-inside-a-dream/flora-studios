@@ -83,6 +83,73 @@ This script is automatically loaded on all pages and requires no additional conf
 - [Understanding Metrics](https://vercel.com/docs/speed-insights/metrics)
 - [Privacy and Compliance](https://vercel.com/docs/speed-insights/privacy-policy)
 
+## Vercel Web Analytics
+
+This project includes Vercel Web Analytics for tracking visitor behavior and page views. Web Analytics provides insights into user interactions with your site.
+
+### Prerequisites
+
+- A Vercel account. If you don't have one, you can [sign up for free](https://vercel.com/signup).
+- A Vercel project. If you don't have one, you can [create a new project](https://vercel.com/new).
+
+### Setup Instructions
+
+#### 1. Enable Web Analytics in Vercel
+
+On the [Vercel dashboard](/dashboard), select your Project and then click the **Analytics** tab and click **Enable** from the dialog.
+
+> **💡 Note:** Enabling Web Analytics will add new routes (scoped at `/_vercel/insights/*`) after your next deployment.
+
+#### 2. Install the Analytics Package
+
+The `@vercel/analytics` package is already included in the project dependencies. To ensure it's installed, run:
+
+```bash
+npm install
+```
+
+#### 3. Deploy to Vercel
+
+Deploy your app to Vercel's global CDN:
+
+```bash
+vercel deploy
+```
+
+Alternatively, [connect your project's git repository](/docs/git#deploying-a-git-repository), which will enable Vercel to deploy your latest pushes and merges to main.
+
+#### 4. View Your Data
+
+Once your app is deployed and users have visited your site, you can view the data in the dashboard.
+
+To do so, go to your [Vercel dashboard](/dashboard), select your project, and click the **Analytics** tab.
+
+After a few days of visitors, you'll be able to start exploring your data by viewing and [filtering](/docs/analytics/filtering) the panels.
+
+### Implementation Details
+
+Web Analytics has been integrated into all pages of the site using the HTML script tag implementation:
+
+```html
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+```
+
+This script is automatically loaded on all pages and tracks visitor interactions without any additional configuration needed.
+
+> **💡 Note:** If everything is set up properly, you should be able to see a Fetch/XHR request in your browser's Network tab from `/_vercel/insights/view` when you visit any page.
+
+### Learn More
+
+- [Vercel Web Analytics Documentation](https://vercel.com/docs/analytics)
+- [Using Custom Events](/docs/analytics/custom-events)
+- [Filtering Data](/docs/analytics/filtering)
+- [Privacy and Data Compliance](/docs/analytics/privacy-policy)
+- [Limits and Pricing](/docs/analytics/limits-and-pricing)
+- [Troubleshooting](/docs/analytics/troubleshooting)
+
 ## Project Structure
 
 - `public/`: Contains the source files.
