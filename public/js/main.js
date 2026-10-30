@@ -13,8 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
         items[currentItem].classList.add('active');
     }
 
-    // Change slide every 5 seconds
-    setInterval(nextSlide, 5000);
+    // Change slide every 5 seconds (only on pages with a carousel)
+    if (items.length > 0) {
+        setInterval(nextSlide, 5000);
+    }
 
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -207,10 +209,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Add event listeners to modal controls
-    closeBtn.addEventListener('click', closeModal);
-    prevBtn.addEventListener('click', showPrevImage);
-    nextBtn.addEventListener('click', showNextImage);
+    // Add event listeners to modal controls (modal only exists on the portfolio landing page)
+    if (modal) {
+        closeBtn.addEventListener('click', closeModal);
+        prevBtn.addEventListener('click', showPrevImage);
+        nextBtn.addEventListener('click', showNextImage);
+    }
 
     // Close modal when clicking outside of the image
     window.addEventListener('click', (event) => {

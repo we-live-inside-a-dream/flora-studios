@@ -488,6 +488,21 @@ footer {
         }
     }
 
+    .nap-info {
+        text-align: center;
+        font-size: 0.9rem;
+        width: 100%;
+
+        strong {
+            color: $white;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: $secondary-color;
+        }
+    }
+
     .made-in {
         text-align: center;
         font-size: 0.8rem;
@@ -667,9 +682,40 @@ footer {
 }
 
 // Portfolio Page
+.portfolio-header {
+    padding: 150px 2rem 0; // Clear fixed header
+    text-align: center;
+
+    .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: color.adjust($primary-color, $lightness: 20%);
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        padding: 120px 1.5rem 0;
+
+        .hero-content h1 {
+            font-size: 2.2rem;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+        }
+    }
+}
+
 .portfolio {
-    padding: 120px 2rem 4rem; // Ensure header doesn't overlap
-    min-height: 100vh;
+    padding: 4rem 0 $section-spacing;
 
     .project-container {
         @include container-width;
@@ -686,6 +732,7 @@ footer {
         padding-bottom: 0; // Reset padding hack for grid
 
         img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -703,13 +750,10 @@ footer {
             transition: all 0.4s ease;
             text-align: center;
             width: 100%;
-            background: transparent; // Remove white box
-
-            h3 {
-                color: $white;
-                font-size: 2.5rem;
-                margin-bottom: 0.5rem;
-            }
+            padding: 0 2rem;
+            font-family: $font-serif;
+            font-size: 2.5rem;
+            line-height: 1.3;
         }
 
         // Dark overlay on hover
@@ -738,10 +782,38 @@ footer {
                 opacity: 1;
             }
         }
+
+        // Touch devices can't hover, so keep titles visible over a gradient
+        @media (hover: none) {
+            &::after {
+                opacity: 1;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 50%);
+            }
+
+            .item-title {
+                opacity: 1;
+                top: auto;
+                bottom: 1.5rem;
+                transform: translateX(-50%);
+            }
+        }
     }
 
     @media screen and (max-width: 900px) {
-        padding: 8rem 0;
+        padding: 3rem 0 4rem;
+
+        .project-container {
+            padding: 0 1.5rem;
+            gap: 1.5rem;
+        }
+
+        .flex-item {
+            height: 420px;
+
+            .item-title {
+                font-size: 1.8rem;
+            }
+        }
     }
 }
 
